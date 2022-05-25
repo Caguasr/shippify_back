@@ -11,7 +11,7 @@ export const getVehiclesByDriver = async (req: Request, res: Response) => {
     const page: number = parseInt(req.params.page);
     const registers = page * 10;
     try {
-        const query = `SELECT * from vehicle limit ${registers} ,10`
+        const query = `SELECT * from vehicle`
         const vehicles: Vehicle[] = await connection.query(query, {type: QueryTypes.SELECT})
         const vehiclesByDriver = await groupVehiclesByDriver(vehicles)
         return res.status(200).json(vehiclesByDriver)
